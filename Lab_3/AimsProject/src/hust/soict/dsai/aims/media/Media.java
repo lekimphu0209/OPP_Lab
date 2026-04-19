@@ -13,13 +13,23 @@ public abstract class Media {
         this.cost = cost;
     }
 
-    public String getTitle() { return title; }
-    public float getCost() { return cost; }
+    public String getTitle() {
+        return title;
+    }
+
+    public float getCost() {
+        return cost;
+    }
 
     @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Media)) return false;
-        Media m = (Media) o;
-        return this.title.equals(m.title);
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Media)) return false;
+        Media other = (Media) obj;
+        return this.title.equals(other.title);
+    }
+
+    @Override
+    public String toString() {
+        return title + " - " + category + " - " + cost + "$";
     }
 }

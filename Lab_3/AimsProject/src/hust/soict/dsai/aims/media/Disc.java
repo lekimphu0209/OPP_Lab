@@ -1,15 +1,16 @@
 package hust.soict.dsai.aims.media;
 
-public abstract class Disc extends Media {
-    private String director;
+public class Disc extends Media {
     private int length;
+    private String director;
 
-    public Disc(int id, String title, String category, float cost, String director, int length) {
+    public Disc(int id, String title, String category, float cost, int length, String director) {
         super(id, title, category, cost);
-        this.director = director;
         this.length = length;
+        this.director = director;
     }
 
-    public String getDirector() { return director; }
-    public int getLength() { return length; }
+    public int getLength() {
+        return length;
+    }
 }

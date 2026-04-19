@@ -14,4 +14,8 @@ public class Book extends Media {
             authors.add(author);
         }
     }
+
+    public void removeAuthor(String author) {
+        authors.remove(author);
+    }
 }

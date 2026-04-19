@@ -9,22 +9,19 @@ public class Track implements Playable {
         this.length = length;
     }
 
-    public String getTitle() { return title; }
-    public int getLength() { return length; }
-
     @Override
     public void play() {
-        if (length > 0) {
-            System.out.println("Playing Track: " + title + " - length: " + length);
-        } else {
-            System.out.println("ERROR: Track length is non-positive!");
-        }
+        System.out.println("Playing track: " + title);
+    }
+
+    public int getLength() {
+        return length;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Track)) return false;
-        Track t = (Track) o;
-        return this.title.equals(t.title) && this.length == t.length;
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Track)) return false;
+        Track other = (Track) obj;
+        return this.title.equals(other.title) && this.length == other.length;
     }
 }

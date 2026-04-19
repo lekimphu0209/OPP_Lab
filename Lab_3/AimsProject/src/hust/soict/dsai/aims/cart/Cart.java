@@ -1,46 +1,29 @@
 package hust.soict.dsai.aims.cart;
 
-import java.util.ArrayList;
 import hust.soict.dsai.aims.media.Media;
+import java.util.ArrayList;
 
 public class Cart {
-    private ArrayList<Media> itemsOrdered = new ArrayList<>();
+    private ArrayList<Media> items = new ArrayList<>();
 
-    public void addMedia(Media media) {
-        itemsOrdered.add(media);
-        System.out.println("Added: " + media.getTitle());
+    public void addMedia(Media m) {
+        items.add(m);
+        System.out.println("Added: " + m.getTitle());
     }
 
-    public void removeMedia(Media media) {
-        if (itemsOrdered.remove(media)) {
-            System.out.println("Removed: " + media.getTitle());
-        } else {
-            System.out.println("Media not found!");
-        }
+    public void removeMedia(Media m) {
+        items.remove(m);
     }
 
     public float totalCost() {
         float sum = 0;
-        for (Media m : itemsOrdered) {
-            sum += m.getCost();
-        }
+        for (Media m : items) sum += m.getCost();
         return sum;
     }
 
     public void print() {
-        System.out.println("***********************CART***********************");
-        for (int i = 0; i < itemsOrdered.size(); i++) {
-            System.out.println((i+1) + ". " + itemsOrdered.get(i).toString());
-        }
-        System.out.println("Total cost: " + totalCost());
-        System.out.println("**************************************************");
-    }
-
-    public void searchByTitle(String title) {
-        for (Media m : itemsOrdered) {
-            if (m.getTitle().toLowerCase().contains(title.toLowerCase())) {
-                System.out.println(m);
-            }
+        for (Media m : items) {
+            System.out.println(m);
         }
     }
 }
