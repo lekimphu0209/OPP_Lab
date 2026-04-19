@@ -1,54 +1,45 @@
 package hust.soict.dsai.aims.cart;
 
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import java.util.ArrayList;
+import hust.soict.dsai.aims.media.Media;
 
 public class Cart {
-    public static final int MAX = 20;
-    private DigitalVideoDisc items[] = new DigitalVideoDisc[MAX];
-    private int qty = 0;
+    private ArrayList<Media> itemsOrdered = new ArrayList<>();
 
-    // add 1 DVD
-    public void addDigitalVideoDisc(DigitalVideoDisc dvd) {
-        if (qty < MAX) {
-            items[qty++] = dvd;
-            System.out.println("Added: " + dvd.getTitle());
-        }
+    public void addMedia(Media media) {
+        itemsOrdered.add(media);
+        System.out.println("Added: " + media.getTitle());
     }
 
-
-    // add 2 DVD
-    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
-        addDigitalVideoDisc(dvd1);
-        addDigitalVideoDisc(dvd2);
-    }
-
-    // varargs
-    public void addDigitalVideoDisc(DigitalVideoDisc... dvdList) {
-        for (DigitalVideoDisc dvd : dvdList) {
-            addDigitalVideoDisc(dvd);
+    public void removeMedia(Media media) {
+        if (itemsOrdered.remove(media)) {
+            System.out.println("Removed: " + media.getTitle());
+        } else {
+            System.out.println("Media not found!");
         }
     }
 
     public float totalCost() {
         float sum = 0;
-        for (int i = 0; i < qty; i++) {
-            sum += items[i].getCost();
+        for (Media m : itemsOrdered) {
+            sum += m.getCost();
         }
         return sum;
     }
 
     public void print() {
-        System.out.println("CART:");
-        for (int i = 0; i < qty; i++) {
-            System.out.println(items[i]);
+        System.out.println("***********************CART***********************");
+        for (int i = 0; i < itemsOrdered.size(); i++) {
+            System.out.println((i+1) + ". " + itemsOrdered.get(i).toString());
         }
-        System.out.println("Total: " + totalCost());
+        System.out.println("Total cost: " + totalCost());
+        System.out.println("**************************************************");
     }
 
     public void searchByTitle(String title) {
-        for (int i = 0; i < qty; i++) {
-            if (items[i].isMatch(title)) {
-                System.out.println(items[i]);
+        for (Media m : itemsOrdered) {
+            if (m.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                System.out.println(m);
             }
         }
     }
